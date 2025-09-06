@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap');
+:root { --bg-page:#1a1c1b; --bg-card:#302f2c; --text-primary:#d9fb06; --text-secondary:#e0e0e0; --text-inverse:#1a1c1b; --brand-primary:#d9fb06; --brand-hover:rgba(217,251,6,.8); --border-medium:#3f4816; }
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',Arial,sans-serif;background-color:var(--bg-page);color:var(--text-primary);line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+.brand-display{font-weight:900;font-size:clamp(3rem,5rem + 2vw,6rem);line-height:.9;text-transform:uppercase;letter-spacing:-.02em;color:var(--text-primary)}
+.heading-3{font-weight:600;font-size:1.5rem;line-height:1.2;color:var(--text-primary)}
+.body-large{font-weight:500;font-size:1.25rem;line-height:1.5;color:#d0d0d0}
+.body-small{font-weight:500;font-size:.9rem;line-height:1.4;color:#e0e0e0}
+.btn-primary{background:var(--brand-primary);color:var(--text-inverse);border:none;border-radius:50px;padding:1em 2em;font-weight:600;font-size:1rem;cursor:pointer;transition:all .3s ease;text-transform:uppercase;display:inline-flex;align-items:center;gap:8px;text-decoration:none}
+.btn-primary:hover{transform:scale(1.02);background:var(--brand-hover)}
+.btn-secondary{background:transparent;color:var(--brand-primary);border:2px solid var(--brand-primary);border-radius:50px;padding:1em 2em;font-weight:600;font-size:1rem;cursor:pointer;transition:all .3s ease;text-transform:uppercase;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+.btn-secondary:hover{background:var(--brand-primary);color:var(--text-inverse);transform:scale(1.02)}
+.container{max-width:1200px;margin:0 auto;padding:0 20px}
+.hero-section{min-height:100vh;display:flex;align-items:center;padding:120px 0 80px}
+.service-card{background:var(--bg-card);border:1px solid var(--border-medium);border-radius:12px;padding:40px;transition:all .3s ease;height:100%}
+.service-card:hover{transform:translateY(-4px);border-color:var(--brand-primary);box-shadow:0 20px 40px rgba(217,251,6,.1)}
+@media (max-width:768px){.container{padding:0 15px}.hero-section{padding:80px 0 60px;min-height:80vh}.btn-primary,.btn-secondary{width:100%;justify-content:center}.brand-display{font-size:clamp(2rem,4vw,4rem)}}
+a{text-decoration:none;color:inherit}
+a:hover{color:var(--brand-primary);transition:color .2s ease}
