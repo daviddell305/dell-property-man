@@ -72,8 +72,8 @@ const Hero = () => (
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(500px, 1fr))",
-          gap: "60px",
+          gridTemplateColumns: "repeat(auto-fit, minmax(360px, 1fr))",
+gap: "40px",
           alignItems: "center",
         }}
       >
@@ -212,23 +212,34 @@ const Services = () => (
 const Contact = () => {
   const [status, setStatus] = useState({ submitting: false, succeeded: false, error: null });
 
-  const onSubmit = async (e) => {
-    e.preventDefault();
-    setStatus({ submitting: true, succeeded: false, error: null });
-    try {
-      const data = new FormData(e.currentTarget);
-      const res = await fetch(FORM_ENDPOINT, { method: "POST", body: data, headers: { Accept: "application/json" } });
-      if (res.ok) {
-        setStatus({ submitting: false, succeeded: true, error: null });
-        e.currentTarget.reset();
-      } else {
-        const payload = await res.json().catch(() => null);
-        setStatus({ submitting: false, succeeded: false, error: payload?.errors?.[0]?.message || "Submission failed." });
-      }
-    } catch {
-      setStatus({ submitting: false, succeeded: false, error: "Network error. Please email or call us." });
+const onSubmit = async (e) => {
+  e.preventDefault();
+  setStatus({ submitting: true, succeeded: false, error: null });
+  try {
+    const data = new FormData(e.currentTarget);
+    const res = await fetch(FORM_ENDPOINT, {
+      method: "POST",
+      body: data,
+      headers: { Accept: "application/json" },
+      credentials: "omit",
+    });
+    if (res.ok) {
+      setStatus({ submitting: false, succeeded: true, error: null });
+      e.currentTarget.reset();
+    } else {
+      const payload = await res.json().catch(() => null);
+      setStatus({
+        submitting: false,
+        succeeded: false,
+        error: payload?.errors?.[0]?.message || "Submission failed.",
+      });
     }
-  };
+  } catch (err) {
+    // Fallback: do a normal HTML POST to Formspree (shows their success page)
+    e.currentTarget.submit();
+  }
+};
+
 
   const inputStyle = {
     width: "100%",
